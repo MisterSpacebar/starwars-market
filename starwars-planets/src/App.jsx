@@ -1,35 +1,63 @@
-import { useState } from 'react'
-import reactLogo from './assets/react.svg'
-import viteLogo from '/vite.svg'
-import './App.css'
+import React from 'react';
+import { BrowserRouter as Router, Route, Routes } from 'react-router-dom';
+import { useNavigate } from "react-router-dom";
+import Tab from 'react-bootstrap/Tab';
+import Tabs from 'react-bootstrap/Tabs';
+// Components
+import Table from './components/Table';
+import NewPlanet from './components/NewPlanet';
 
-function App() {
-  const [count, setCount] = useState(0)
+// import reactLogo from './assets/react.svg'
+// import viteLogo from '/vite.svg'
+// import './App.css'
+
+import './FirebaseConfig'
+
+// import { initializeApp, applicationDefault, cert } from 'firebase-admin/app';
+// import { getFirestore, Timestamp, FieldValue, Filter } from 'firebase-admin/firestore';
+
+// initializeApp();
+// const firestore_database = getFirestore();
+
+function NavigationTabs() {
+  const navigate = useNavigate();
+
+  const handleSelect = (selectedTab) => {
+    switch (selectedTab) {
+      case 'table':
+        navigate('/table');
+        break;
+      case 'new-planet':
+        navigate('/new-planet');
+        break;
+      case 'about':
+        navigate('/about');
+        break;
+      default:
+        break;
+    }
+  };
 
   return (
-    <>
-      <div>
-        <a href="https://vitejs.dev" target="_blank">
-          <img src={viteLogo} className="logo" alt="Vite logo" />
-        </a>
-        <a href="https://react.dev" target="_blank">
-          <img src={reactLogo} className="logo react" alt="React logo" />
-        </a>
-      </div>
-      <h1>Vite + React</h1>
-      <div className="card">
-        <button onClick={() => setCount((count) => count + 1)}>
-          count is {count}
-        </button>
-        <p>
-          Edit <code>src/App.jsx</code> and save to test HMR
-        </p>
-      </div>
-      <p className="read-the-docs">
-        Click on the Vite and React logos to learn more
-      </p>
-    </>
-  )
+    <Tabs defaultActiveKey="table" className="mb-3 tab-select-header" onSelect={handleSelect}>
+      <Tab className='tab-select-table tab-select-header' eventKey="table" title="Table" />
+      <Tab className='tab-select-new-planet tab-select-header' eventKey="new-planet" title="New Planet" />
+      {/* <Tab className='tab-select-about' eventKey="about" title="About" /> */}
+    </Tabs>
+  );
 }
 
-export default App
+function App() {
+  return (
+    <Router>
+      <NavigationTabs />
+      <Routes>
+        <Route path='/table' component={<Table />} />
+        <Route path='/new-planet' element={<NewPlanet />} />
+        {/* <Route path='/about' component={About} /> */}
+      </Routes>
+    </Router>
+  );
+}
+
+export default App;
