@@ -1,0 +1,18 @@
+.new-planet-form {
+    table-layout: fixed;
+}
+
+.new-planet-form th,
+.new-planet-form td {
+    word-wrap: break-word;
+}
+
+.new-planet-form-name,
+.new-planet-form-import,
+.new-planet-form-export {
+    width: 30%;
+}
+
+.industry-select {
+    width: 100%;
+}

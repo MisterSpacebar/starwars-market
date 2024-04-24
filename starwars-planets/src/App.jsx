@@ -48,6 +48,7 @@ function NavigationTabs() {
 }
 
 function App() {
+  console.log('App');
   return (
     <Router>
       <NavigationTabs />

@@ -1,0 +1,9 @@
+.tab-select-header {
+    display: flex;
+    flex-direction: row;
+    list-style-type: none;
+}
+
+.tab-select-header .nav-item {
+    margin-right: 10px; /* adjust as needed */
+}
