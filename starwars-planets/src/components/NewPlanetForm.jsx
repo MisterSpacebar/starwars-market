@@ -2,7 +2,7 @@ import React, { useState, useEffect } from 'react';
 import { Form, Button, Table } from 'react-bootstrap';
 import industries from '../templates/industries';
 
-// import '../styles/planetform.css';
+import '../styles/planetform.css';
 
 function toCamelCaseArray(arr) {
     return arr.map(str => 

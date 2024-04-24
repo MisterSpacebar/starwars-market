@@ -4,6 +4,9 @@ import commodities from '../templates/commodities';
 
 import NewPlanetForm from './NewPlanetForm';
 
+// import { database } from '../FirebaseConfig'
+// import { addDoc, collection } from 'firebase/firestore';
+
 function generatePercentageLower() {
     return Math.random() * 0.900 + 0.850;
 }
@@ -21,7 +24,11 @@ function NewPlanet() {
     const [imports, setImports] = useState([]);
     const [exports, setExports] = useState([]);
     const [planetCommodity, setPlanetCommodity] = useState([]);
+    const [test, setTest] = useState(false);
     let commodityList = [];
+
+    // initializeApp();
+
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -76,20 +83,22 @@ function NewPlanet() {
             console.log(`final array`);
             console.log(commodityList);
             setPlanetCommodity(commodityList);
+            setTest(true);
         }
 
         let newPlanet = {
             imports: imports,
             exports: exports,
-            commodities: planetCommodity
+            commodities: commodityList
         };
 
         console.log(newPlanet);
+        // await addDoc(collection(database, 'planets'), newPlanet);
 
     };
 
   return (
-    <div>
+    <div className="jumbotron jumbotron-fluid main-jumbo">
         <NewPlanetForm 
         planetName={planetName} 
         setPlanetName={setPlanetName} 
@@ -101,11 +110,12 @@ function NewPlanet() {
         />
         <div>
             <h3>Planet Commodity</h3>
-            <ul>
+            {/* <ul>
                 {planetCommodity.map((commodity, index) => (
                     <li key={index}>{JSON.stringify(commodity)  }</li>
                 ))}
-            </ul>
+            </ul> */}
+            <p>{ test ? 'stuff' : ''}</p>
         </div>
     </div>
   );
