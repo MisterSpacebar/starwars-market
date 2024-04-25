@@ -4,8 +4,8 @@ import commodities from '../templates/commodities';
 
 import NewPlanetForm from './NewPlanetForm';
 
-// import { database } from '../FirebaseConfig'
-// import { addDoc, collection } from 'firebase/firestore';
+import { database } from '../FirebaseConfig'
+import { setDoc, doc } from 'firebase/firestore';
 
 function generatePercentageLower() {
     return Math.random() * 0.900 + 0.850;
@@ -26,9 +26,6 @@ function NewPlanet() {
     const [planetCommodity, setPlanetCommodity] = useState([]);
     const [test, setTest] = useState(false);
     let commodityList = [];
-
-    // initializeApp();
-
 
     const handleSubmit = async (event) => {
         event.preventDefault();
@@ -58,8 +55,8 @@ function NewPlanet() {
                 console.log('import commodities',commodity);
                 let updatedCommodity = commodity.map(c => ({
                     ...c,
-                    sell_price: parseInt(c.sell_price * generatePercentageLower()),
-                    buy_price: parseInt(c.buy_price * generatePercentageHigher()),
+                    sell_price: parseInt(c.sell_price * generatePercentageHigher()),
+                    buy_price: parseInt(c.buy_price * generatePercentageLower()),
                     supply: parseInt(c.supply * generatePercentageLower()),
                     demand: parseInt(c.demand * generatePercentageHigher()),
                 }));
@@ -87,13 +84,15 @@ function NewPlanet() {
         }
 
         let newPlanet = {
+            planet_name: planetName,
             imports: imports,
             exports: exports,
             commodities: commodityList
         };
 
         console.log(newPlanet);
-        // await addDoc(collection(database, 'planets'), newPlanet);
+        await setDoc(doc(database, "planets", planetName), newPlanet);
+        console.log('Planet added to database?');
 
     };
 

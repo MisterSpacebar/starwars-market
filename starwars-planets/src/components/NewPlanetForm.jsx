@@ -70,6 +70,11 @@ const NewPlanetForm = ({ planetName, setPlanetName, imports, setImports, exports
                         <td className='new-planet-form new-planet-form-name'>
                             <Form.Control type="text" value={planetName} onChange={handlePlanetNameChange} />
                         </td>
+                        <td className='new-planet-form new-planet-form-button'>
+                            <Button variant="primary" type="submit">
+                                Submit
+                            </Button>
+                        </td>
                     </tr>
                     <tr>
                     <td className='new-planet-form'><Form.Label>Imports:</Form.Label></td>
@@ -103,9 +108,6 @@ const NewPlanetForm = ({ planetName, setPlanetName, imports, setImports, exports
                     </tr>
                 </tbody>
             </Table>
-            <Button variant="primary" type="submit">
-                Submit
-            </Button>
         </Form>
     );
 };

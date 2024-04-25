@@ -1,11 +1,12 @@
-.main-jumbo {
+.main-jumbotron {
     display: flex;
     flex-direction: column;
-    justify-content: center;
     height: 100vh;
+    max-width: 1000px;
+    margin: 0 auto;
 }
 
-.jumbotron {
-    max-width: 1200px;
-    margin: 0 auto;
+.navigation-header {
+    padding-left: 175px;
+    padding-right: 175px;
 }
