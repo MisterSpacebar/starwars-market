@@ -1,7 +1,7 @@
 import React from 'react';
 import { BrowserRouter as Router, Routes, Route } from 'react-router-dom';
 import NavigationTabs from './components/navigation';
-import CommodityTable from './components/CommodityTable';
+import Commodities from './components/Commodities';
 import NewPlanet from './components/NewPlanet';
 
 import './styles/style.css';
@@ -22,7 +22,7 @@ function App() {
             <br></br>
           </div>
           <Routes>
-            <Route path='/table' element={<CommodityTable />} />
+            <Route path='/table' element={<Commodities />} />
             <Route path='/new-planet' element={<NewPlanet />} />
           </Routes>
         </div>

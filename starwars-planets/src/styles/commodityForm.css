@@ -1,0 +1,14 @@
+.input-group {
+    max-width: 50%;
+}
+
+.form-submit-button {
+    float: right;
+}
+
+.commodity-update-form {
+    margin-top: 20px;
+    margin-left: auto;
+    margin-right: auto;
+    width: 60%;
+}
