@@ -7,7 +7,7 @@ import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 
 import '../styles/commodityForm.css'
 
-const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, setBuy, sell, setSell, currentPlanet }) => {
+const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, setBuy, sell, setSell, currentPlanet, formUpdate, setFormUpdate }) => {
   // const [supply, setSupply] = useState(0);
   // const [demand, setDemand] = useState(0);
   const [selectedPlanet, setSelectedPlanet] = useState('');
@@ -33,8 +33,9 @@ const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, 
 
   useEffect(() => {
     setImportedFrom(selectedPlanet);
-    console.log('supply:', buy);
-    console.log('demand:', sell);
+    setFormUpdate(!formUpdate);
+    console.log('()supply:', buy);
+    console.log('()demand:', sell);
   }, [selectedPlanet]);
 
   useEffect(() => {
