@@ -7,6 +7,10 @@ import '../styles/commodityTabTables.css';
 const CommodityTable = ({ commodity, unCamelCase, planetCommodities, setPlanetCommodities, currentPlanet, otherPlanets}) => {
   const [expandedRow, setExpandedRow] = useState(null);
   const [importedFrom, setImportedFrom] = useState('');
+  const [updatedCommodities, setUpdatedCommodities] = useState([]);
+
+  const [buy, setBuy] = useState(0);
+  const [sell, setSell] = useState(0);
 
   const toggleRow = (itemIndex) => {
     setExpandedRow(expandedRow === itemIndex ? null : itemIndex);
@@ -22,6 +26,7 @@ const CommodityTable = ({ commodity, unCamelCase, planetCommodities, setPlanetCo
 
   useEffect(() => {
     console.log('importedFrom:', importedFrom);
+    console.log(planetCommodities)
   }, [importedFrom]);
 
   return (
@@ -35,8 +40,8 @@ const CommodityTable = ({ commodity, unCamelCase, planetCommodities, setPlanetCo
             <th>Sale Price</th>
             <th>Supply</th>
             <th>Demand</th>
-            <th>Exported To</th>
-            <th>Imported From</th>
+            <th>Last Delivery</th>
+            <th>Recent Arrival</th>
           </tr>
         </thead>
         <tbody>
@@ -55,7 +60,7 @@ const CommodityTable = ({ commodity, unCamelCase, planetCommodities, setPlanetCo
                 <td colSpan="7">
                   <Collapse in={expandedRow === itemIndex}>
                     <div>
-                      <UpdateCommodity item={item} otherPlanets={otherPlanets} setImportedFrom={setImportedFrom} />
+                      <UpdateCommodity commodity={commodity} item={item} otherPlanets={otherPlanets} setImportedFrom={setImportedFrom} buy={buy} setBuy={setBuy} sell={sell} setSell={setSell} currentPlanet={currentPlanet} />
                     </div>
                   </Collapse>
                 </td>
