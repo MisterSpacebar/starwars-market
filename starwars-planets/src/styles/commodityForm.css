@@ -1,14 +1,32 @@
 .input-group {
-    max-width: 50%;
+    padding-left: 10px;
+    padding-right: 10px;
 }
 
 .form-submit-button {
     float: right;
+    margin-right: 10px;
+    margin-top: 30px;
 }
 
 .commodity-update-form {
-    margin-top: 20px;
-    margin-left: auto;
-    margin-right: auto;
-    width: 60%;
+    margin: 0 auto;
+    width: 95%;
+}
+
+.item-name {
+    text-align: center;
+}
+
+.update-form {
+    margin-left: 5.5%;
+}
+
+.update-row {
+    padding: 10px;
+}
+
+.import-planet {
+    width: 95%;
+    margin: 0 auto;
 }

@@ -1,17 +1,28 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Table, Collapse } from 'react-bootstrap';
 import UpdateCommodity from './UpdateCommodity'; // Make sure to import the new component
 
 import '../styles/commodityTabTables.css';
 
-const CommodityTable = ({ commodity, unCamelCase }) => {
+const CommodityTable = ({ commodity, unCamelCase, planetCommodities, setPlanetCommodities, currentPlanet, otherPlanets}) => {
   const [expandedRow, setExpandedRow] = useState(null);
+  const [importedFrom, setImportedFrom] = useState('');
+
   const toggleRow = (itemIndex) => {
     setExpandedRow(expandedRow === itemIndex ? null : itemIndex);
   };
 
   const category = Object.keys(commodity)[0];
   const items = Object.values(commodity)[0];
+
+  useEffect(() => {
+    console.log('currentPlanet:', currentPlanet);
+    console.log('otherPlanets:', otherPlanets);
+  }, [expandedRow]);
+
+  useEffect(() => {
+    console.log('importedFrom:', importedFrom);
+  }, [importedFrom]);
 
   return (
     <div className='tabbed-form-tables'>
@@ -44,7 +55,7 @@ const CommodityTable = ({ commodity, unCamelCase }) => {
                 <td colSpan="7">
                   <Collapse in={expandedRow === itemIndex}>
                     <div>
-                      <UpdateCommodity item={item} />
+                      <UpdateCommodity item={item} otherPlanets={otherPlanets} setImportedFrom={setImportedFrom} />
                     </div>
                   </Collapse>
                 </td>

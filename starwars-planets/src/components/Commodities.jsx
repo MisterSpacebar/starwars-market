@@ -17,6 +17,7 @@ const Commodities = () => {
   const [currentImports, setCurrentImports] = useState([]);
   const [planetCommodities, setPlanetCommodities] = useState([]);
   const [availablePlanets, setAvailablePlanets] = useState([]);
+  const [otherPlanets, setOtherPlanets] = useState([]);
 
   useEffect(() => {
     const fetchData = async () => {
@@ -40,6 +41,9 @@ const Commodities = () => {
           setCurrentExports(data.exports);
           setCurrentImports(data.imports);
           setPlanetCommodities(data.commodities || []);
+          let others = availablePlanets.filter(planet => planet !== currentPlanet);
+          setOtherPlanets(others);
+          console.log('others:', others);
         } else {
           console.log("No such document!");
         }
@@ -76,7 +80,7 @@ const Commodities = () => {
             <Tabs defaultActiveKey="0" id="commodity-tabs">
               {planetCommodities.map((commodity, index) => (
                 <Tab eventKey={index.toString()} title={unCamelCase(Object.keys(commodity)[0])} key={index}>
-                  <CommodityTable commodity={commodity} unCamelCase={unCamelCase} planetCommodities={planetCommodities} setPlanetCommodities={setPlanetCommodities} />
+                  <CommodityTable commodity={commodity} unCamelCase={unCamelCase} planetCommodities={planetCommodities} setPlanetCommodities={setPlanetCommodities} currentPlanet={currentPlanet} otherPlanets={otherPlanets} />
                 </Tab>
               ))}
             </Tabs>
