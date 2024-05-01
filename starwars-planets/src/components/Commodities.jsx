@@ -80,7 +80,7 @@ const Commodities = () => {
             <Tabs defaultActiveKey="0" id="commodity-tabs">
               {planetCommodities.map((commodity, index) => (
                 <Tab eventKey={index.toString()} title={unCamelCase(Object.keys(commodity)[0])} key={index}>
-                  <CommodityTable commodity={commodity} unCamelCase={unCamelCase} planetCommodities={planetCommodities} setPlanetCommodities={setPlanetCommodities} currentPlanet={currentPlanet} otherPlanets={otherPlanets} />
+                  <CommodityTable commodity={commodity} unCamelCase={unCamelCase} planetCommodities={planetCommodities} currentExports={currentExports} currentImports={currentImports} setPlanetCommodities={setPlanetCommodities} currentPlanet={currentPlanet} otherPlanets={otherPlanets} />
                 </Tab>
               ))}
             </Tabs>

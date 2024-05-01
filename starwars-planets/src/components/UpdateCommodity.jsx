@@ -7,7 +7,7 @@ import { doc, getDoc, setDoc, collection, getDocs } from "firebase/firestore";
 
 import '../styles/commodityForm.css'
 
-const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, setBuy, sell, setSell, currentPlanet, formUpdate, setFormUpdate }) => {
+const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, setBuy, sell, setSell, currentPlanet, formUpdate, setFormUpdate, setSelectedItem }) => {
   // const [supply, setSupply] = useState(0);
   // const [demand, setDemand] = useState(0);
   const [selectedPlanet, setSelectedPlanet] = useState('');
@@ -25,15 +25,16 @@ const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, 
     e.preventDefault();
     const newSupply = e.target.elements.formSupply.value;
     const newDemand = e.target.elements.formDemand.value;
+    setSelectedItem(item.name);
     setBuy(newSupply);
     setSell(newDemand);
     setUpdate(!update);
+    setFormUpdate(!formUpdate);
     console.log('update:', update);
   };
 
   useEffect(() => {
     setImportedFrom(selectedPlanet);
-    setFormUpdate(!formUpdate);
     console.log('()supply:', buy);
     console.log('()demand:', sell);
   }, [selectedPlanet]);
@@ -60,6 +61,20 @@ const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, 
                   console.log('category_item:', category_item);
                   category_item.exported_to = currentPlanet;
                   console.log('category_item.exported_to:', category_item.exported_to);
+
+                  let ratio = 1.000 * (category_item.demand/category_item.supply);
+                  let SDratio = 1;
+                  if (ratio > 1) {
+                    SDratio = 1 - (ratio - 1) * 0.00125;
+                  } else if (ratio < 1) {
+                    SDratio = 1 + (1 - ratio) * 0.00125;
+                  }
+                  console.log('(import planet)SDratio:'+item.name, SDratio);
+                  let newBuyPrice = category_item.buy_price * SDratio;
+                  let newSellPrice = category_item.sell_price * SDratio;
+
+                  category_item.buy_price = parseInt(newBuyPrice);
+                  category_item.sell_price = parseInt(newSellPrice);
                 }
               }
             }
@@ -91,7 +106,7 @@ const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, 
               <div className="input-group">
                 <Button variant="outline-secondary" onClick={() => setBuy(buy - 5)}>-5</Button>
                 <Button variant="outline-secondary" onClick={() => setBuy(buy - 1)}>-1</Button>
-                <Form.Control type="number" placeholder="Enter supply" value={buy} onChange={(e) => setBuy(e.target.value)} />
+                <Form.Control type="number" placeholder="Enter supply" value={buy} onChange={(e) => setBuy(parseInt(e.target.value))} />
                 <Button variant="outline-secondary" onClick={() => setBuy(buy + 1)}>+1</Button>
                 <Button variant="outline-secondary" onClick={() => setBuy(buy + 5)}>+5</Button>
               </div>
@@ -103,7 +118,7 @@ const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, 
               <div className="input-group">
                 <Button variant="outline-secondary" onClick={() => setSell(sell - 5)}>-5</Button>
                 <Button variant="outline-secondary" onClick={() => setSell(sell - 1)}>-1</Button>
-                <Form.Control type="number" placeholder="Enter demand" value={sell} onChange={(e) => setSell(e.target.value)} />
+                <Form.Control type="number" placeholder="Enter demand" value={sell} onChange={(e) => setSell(parseInt(e.target.value))} />
                 <Button variant="outline-secondary" onClick={() => setSell(sell + 1)}>+1</Button>
                 <Button variant="outline-secondary" onClick={() => setSell(sell + 5)}>+5</Button>
               </div>
