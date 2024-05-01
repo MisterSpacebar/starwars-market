@@ -104,8 +104,8 @@ const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, 
             <Form.Group controlId="formSupply">
               <Form.Label className="input-group">Buy: </Form.Label>
               <div className="input-group">
-                <Button variant="outline-secondary" onClick={() => setBuy(buy - 5)}>-5</Button>
-                <Button variant="outline-secondary" onClick={() => setBuy(buy - 1)}>-1</Button>
+                <Button variant="outline-secondary" onClick={() => setBuy((buy - 5 >= 0 ? buy - 5 : 0))}>-5</Button>
+                <Button variant="outline-secondary" onClick={() => setBuy((buy - 5 >= 0 ? buy - 5 : 0))}>-1</Button>
                 <Form.Control type="number" placeholder="Enter supply" value={buy} onChange={(e) => setBuy(parseInt(e.target.value))} />
                 <Button variant="outline-secondary" onClick={() => setBuy(buy + 1)}>+1</Button>
                 <Button variant="outline-secondary" onClick={() => setBuy(buy + 5)}>+5</Button>
@@ -116,8 +116,8 @@ const UpdateCommodity = ({ commodity, item, otherPlanets, setImportedFrom, buy, 
             <Form.Group controlId="formDemand">
               <Form.Label className="input-group">Sell: </Form.Label>
               <div className="input-group">
-                <Button variant="outline-secondary" onClick={() => setSell(sell - 5)}>-5</Button>
-                <Button variant="outline-secondary" onClick={() => setSell(sell - 1)}>-1</Button>
+                <Button variant="outline-secondary" onClick={() => setSell((sell - 5 >= 0 ? sell - 5 : 0))}>-5</Button>
+                <Button variant="outline-secondary" onClick={() => setSell((sell - 5 >= 0 ? sell - 5 : 0))}>-1</Button>
                 <Form.Control type="number" placeholder="Enter demand" value={sell} onChange={(e) => setSell(parseInt(e.target.value))} />
                 <Button variant="outline-secondary" onClick={() => setSell(sell + 1)}>+1</Button>
                 <Button variant="outline-secondary" onClick={() => setSell(sell + 5)}>+5</Button>

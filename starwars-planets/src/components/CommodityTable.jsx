@@ -80,6 +80,8 @@ const CommodityTable = ({ commodity, unCamelCase, planetCommodities, currentExpo
               }
               if (sell > buy) {
                 SDratio = 1 / SDratio;
+              } else if (sell < buy) {
+                SDratio = SDratio * 1.0525;
               }
               if (SDratio < 0.80) {
                 SDratio = SDRatio * 1.125;
