@@ -11,12 +11,11 @@ function unCamelCase(str) {
   return str.replace(/([a-z0-9])([A-Z])/g, '$1 $2').charAt(0).toUpperCase() + str.slice(1).replace(/([a-zA-Z])([A-Z])/g, '$1 $2');
 }
 
-const Commodities = () => {
+const Commodities = ({ availablePlanets, setAvailablePlanets }) => {
   const [currentPlanet, setCurrentPlanet] = useState('');
   const [currentExports, setCurrentExports] = useState([]);
   const [currentImports, setCurrentImports] = useState([]);
   const [planetCommodities, setPlanetCommodities] = useState([]);
-  const [availablePlanets, setAvailablePlanets] = useState([]);
   const [otherPlanets, setOtherPlanets] = useState([]);
 
   useEffect(() => {
