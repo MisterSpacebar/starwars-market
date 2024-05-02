@@ -1,13 +1,14 @@
 import 'bootstrap/dist/css/bootstrap.min.css';
 import Nav from 'react-bootstrap/Nav';
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 
-function NavigationTabs() {
+function NavigationTabs( { tabUpdate, setTabUpdate }) {
   const [ currentTab, setCurrentTab ] = useState('');
 
   const handleTabChange = (eventKey) => {
     const dataItem = eventKey.target.getAttribute("data-item");
     setCurrentTab(dataItem);
+    setTabUpdate(!tabUpdate);
   };
 
   return (
