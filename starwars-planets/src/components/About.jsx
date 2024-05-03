@@ -38,7 +38,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
             const industriesArr = [];
             const selectedIndustries = new Set();
 
-            while (selectedIndustries.size < 4) {
+            while (selectedIndustries.size < 5) {
                 const randomIndex = Math.floor(Math.random() * industries.length);
                 selectedIndustries.add(industries[randomIndex]);
             }
@@ -65,6 +65,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                         // console.log('commodity:', commodity);
                         console.log('commodity[industry]:', commodity[industry]);
                         console.log('planet_two.commodities mirror:', planet_two.commodities[i][industry]);
+                        
                         for (let item = 0; item < commodity[industry].length; item++) {
                             // if the supply of the commodity on planet one is greater than the demand on planet two
                             if (commodity[industry][item].supply > planet_two.commodities[i][industry][item].demand) {
@@ -77,7 +78,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                                 // generate a random number to determine the amount of the commodity to trade
                                 let tradeAmount = generateRandomNumber(100) * 5;
                                 if (tradeAmount >= commodity[industry][item].supply) {
-                                    tradeAmount = generateRandomNumber(parseInt(commodity[industry][item].supply / 5)) * 5;
+                                    tradeAmount = generateRandomNumber(parseInt(commodity[industry][item].supply / 10)) * 5;
                                 }
 
                                 //update planet one
@@ -93,7 +94,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                                 console.log('updated planet two commodity data ', planet_two.commodities[i][industry][item]);
 
                                 // adjust planet one prices
-                                let planet_one_ratio = generateRandomRatio() * Math.pow(( 1.000 * commodity[industry][item].supply / (commodity[industry][item].supply - tradeAmount)),5);
+                                let planet_one_ratio = generateRandomRatio() * Math.pow(( 1.000 * commodity[industry][item].supply / (commodity[industry][item].supply - tradeAmount)),3);
 
                                 if (planet_one_ratio < 0) {
                                   planet_one_ratio = planet_one_ratio * -1;
@@ -128,7 +129,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                                 console.log('updated planet one pricing and supply/demand:', commodity[industry][item]);
 
                                 // adjust planet two prices
-                                let planet_two_ratio = generateRandomRatio() * Math.pow((1.000 * (planet_two.commodities[i][industry][item].supply - tradeAmount) / planet_two.commodities[i][industry][item].supply),5);
+                                let planet_two_ratio = generateRandomRatio() * Math.pow((1.000 * (planet_two.commodities[i][industry][item].supply - tradeAmount) / planet_two.commodities[i][industry][item].supply),3);
 
                                 if (planet_two_ratio < 0) {
                                   planet_two_ratio = planet_two_ratio * -1;
@@ -217,17 +218,24 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
             console.log('planet2:', planet2);
 
             tradeBetweenPlanets(planet1, planet2);
+            tradeBetweenPlanets(planet2, planet1);
         }
 
-    }, [trade]);
+    });
 
     return (
         <div className='jumbotron'>
             <h2>About Star Wars Market</h2>
-            <p>Welcome to the Star Wars Market app! This app allows you to explore and trade various commodities from the Star Wars universe.</p>
-            <p>Whether you're a Jedi, Sith, or just a fan of the franchise, you'll find a wide range of items to buy and sell.</p>
-            <p>May the Force be with you!</p>
-            <button onClick={() => setTrade(!trade)}>Trade</button>
+            <p>Welcome to the Star Wars Market app! This app is designed for fans of the Fantasy Flight Games Star Wars System, but can be adapted to any other Star Wars universe of your choice.</p>
+            <p>With this app, you can explore and trade various commodities from the Star Wars universe. Whether you're a Jedi, Sith, or just a fan of the franchise, you'll find a wide range of items to buy and sell.</p>
+            <p>Immerse yourself in the galactic economy and experience the thrill of interplanetary trade. Discover rare artifacts, exotic weapons, and valuable resources as you navigate through different planets.</p>
+            <p>Use your negotiation skills to strike profitable deals and expand your wealth. Buy low and sell high to maximize your profits, or invest in long-term ventures to secure a steady income.</p>
+            <p>But be careful, as the market is influenced by various factors such as supply and demand, economic conditions, and even political events. Stay updated with the latest market trends and adapt your trading strategies accordingly.</p>
+            <p>Whether you're a seasoned trader or just starting out, the Star Wars Market app provides a dynamic and immersive trading experience that will keep you engaged for hours.</p>
+            <p>May the Force be with you as you embark on your trading journey in the Star Wars universe!</p>
+            {/* <div>
+                <button className='btn btn-primary' onClick={ () => setTrade(!trade) }>Trade Between Planets</button>
+            </div> */}
         </div>
     );
 };

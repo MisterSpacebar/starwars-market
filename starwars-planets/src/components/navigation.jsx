@@ -14,7 +14,10 @@ function NavigationTabs( { tabUpdate, setTabUpdate }) {
   return (
     <Nav justify variant="tabs" defaultActiveKey={currentTab} onSelect={handleTabChange}>
       <Nav.Item>
-        <Nav.Link href="/about" data-item="/about">About</Nav.Link>
+        <Nav.Link href="/" data-item="/">Home</Nav.Link>
+      </Nav.Item>
+      <Nav.Item>
+        <Nav.Link href="/rules" eventKey="/rules" data-item="/rules">Rules</Nav.Link>
       </Nav.Item>
       <Nav.Item>
         <Nav.Link href="/table" eventKey="/table" data-item="/table">Commodities</Nav.Link>

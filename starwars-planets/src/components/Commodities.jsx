@@ -73,8 +73,8 @@ const Commodities = ({ availablePlanets, setAvailablePlanets }) => {
       {currentPlanet !== '' && (
         <>
           <h3>{currentPlanet}</h3>
-          <p>Current Exports: {currentExports.filter(Boolean).map((exportItem) => unCamelCase(exportItem)).join(', ')}</p>
-          <p>Current Imports: {currentImports.filter(Boolean).map((importItem) => unCamelCase(importItem)).join(', ')}</p>
+          <p>Current Exports: {currentExports.length > 0 ? currentExports.filter(Boolean).map((exportItem) => unCamelCase(exportItem)).join(', ') : "None"}</p>
+          <p>Current Imports: {currentImports.length > 0 ? currentImports.filter(Boolean).map((importItem) => unCamelCase(importItem)).join(', ') : "None"}</p>
           <div className='planets-table-div'>
             <Tabs defaultActiveKey="0" id="commodity-tabs">
               {planetCommodities.map((commodity, index) => (

@@ -24,23 +24,23 @@ const db = admin.firestore();
 //   response.send("Hello from Firebase!");
 // });
 
-async function getPlanets() {
+// async function getPlanets() {
 
-    const planetsRef = db.collection('planets');
-    const snapshot = await planetsRef.get();
-    const planets = [];
-    snapshot.forEach(doc => {
-        planets.push(doc.id);
-    });
-    return planets;
-}
+//     const planetsRef = db.collection('planets');
+//     const snapshot = await planetsRef.get();
+//     const planets = [];
+//     snapshot.forEach(doc => {
+//         planets.push(doc.id);
+//     });
+//     return planets;
+// }
 
-exports.getPlanets = onRequest(async (req, res) => {
-    const planets = await getPlanets();
-    console.log('planets:', planets);
-});
+// exports.getPlanets = onRequest(async (req, res) => {
+//     const planets = await getPlanets();
+//     console.log('planets:', planets);
+// });
 
-getPlanets();
+// getPlanets();
 
 // exports.updateDatabase = onSchedule("0 0 * * *").timeZone("UTC-5").onRun(async (context) => {
 //     // Your code to update the Firestore database goes here
