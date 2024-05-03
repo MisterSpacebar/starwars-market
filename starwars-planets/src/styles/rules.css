@@ -1,0 +1,13 @@
+.encum-cargo-table {
+    width: 40%;
+    border-collapse: collapse;
+}
+
+.jumbotron-rules {
+    background-color: lightgrey;
+    padding: 20px;
+    width: 75%;
+    margin: 0 auto;
+    border-radius: 10px;
+    
+}

@@ -4,6 +4,8 @@ import industries from '../templates/industries';
 
 import '../styles/planetform.css';
 
+import NewPlanetPopulate from './NewPlanetPopulate';
+
 function toCamelCaseArray(arr) {
     return arr.map(str => 
         str 
@@ -15,7 +17,7 @@ function toCamelCaseArray(arr) {
     );
 }
 
-const NewPlanetForm = ({ planetName, setPlanetName, imports, setImports, exports, setExports, handleSubmit }) => {
+const NewPlanetForm = ({ planetName, setPlanetName, imports, setImports, exports, setExports, handleSubmit, updatedPlanet }) => {
     let initialIndustries = industries
     const [availableIndustries, setAvailableIndustries] = useState(initialIndustries);
     const [selectedImports, setSelectedImports] = useState(Array(3).fill(null));
@@ -108,6 +110,7 @@ const NewPlanetForm = ({ planetName, setPlanetName, imports, setImports, exports
                     </tr>
                 </tbody>
             </Table>
+            <NewPlanetPopulate updatedPlanet={updatedPlanet} />
         </Form>
     );
 };

@@ -25,6 +25,7 @@ function NewPlanet() {
     const [exports, setExports] = useState([]);
     const [planetCommodity, setPlanetCommodity] = useState([]);
     const [test, setTest] = useState(false);
+    const [ updatedPlanet, setUpdatedPlanet ] = useState('');
     let commodityList = [];
 
     const handleSubmit = async (event) => {
@@ -93,6 +94,7 @@ function NewPlanet() {
         console.log(newPlanet);
         await setDoc(doc(database, "planets", planetName), newPlanet);
         console.log('Planet added to database?');
+        setUpdatedPlanet(planetName);
 
     };
 
@@ -106,6 +108,7 @@ function NewPlanet() {
         exports={exports} 
         setExports={setExports} 
         handleSubmit={handleSubmit}
+        updatedPlanet={updatedPlanet}
         />
         <div>
             <h3>Planet Commodity</h3>
@@ -114,7 +117,10 @@ function NewPlanet() {
                     <li key={index}>{JSON.stringify(commodity)  }</li>
                 ))}
             </ul> */}
-            <p>{ test ? 'stuff' : ''}</p>
+            { test ? <> <p>${planetName} has been added</p><br></br>
+                        <p>Imports: ${imports}</p><br></br>
+                        <p>Exports: ${exports}</p><br></br></>
+                         : <p></p>}
         </div>
     </div>
   );

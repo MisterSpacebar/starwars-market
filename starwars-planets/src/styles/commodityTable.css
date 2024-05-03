@@ -1,7 +1,15 @@
 .planet-selector {
-    max-width: 500px;
+    max-width: 400px;
 }
 
 .commodity-category {
     margin: 20px;
+}
+
+.jumbotron {
+    margin-left: 5%;
+}
+.small-tabs .nav-link {
+    padding: 5px 10px;
+    font-size: 18.5px;
 }

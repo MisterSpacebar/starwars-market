@@ -1,4 +1,4 @@
-import React from 'react';
+import react from 'react';
 import { useState, useEffect } from 'react';
 
 import { database } from '../FirebaseConfig';
@@ -27,9 +27,10 @@ function generateRandomRatio() {
     return Math.random() * 0.19 + 0.905;
 }
 
-const About = ({ availablePlanets, setAvailablePlanets }) => {
+const NewPlanetPopulate = ({ updatedPlanet }) => {
 
     const [trade, setTrade] = useState(false);
+    const [ availablePlanets, setAvailablePlanets ] = useState([]);
 
     useEffect( () => {
         console.log('About');
@@ -184,8 +185,6 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
             console.log('availablePlanets:', availablePlanets);
         }
 
-        updatePlanets();
-
         async function tradeBetweenPlanets(planet1, planet2) {
             const planet1Ref = doc(database, "planets", planet1);
             const planet2Ref = doc(database, "planets", planet2);
@@ -203,41 +202,58 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
             await initiateTradeBetweenPlanets(planet1Doc.data(), planet2Doc.data());
         }
 
-        if (availablePlanets.length >= 2) {
-            let randomIndex1 = Math.floor(Math.random() * availablePlanets.length);
-            let randomIndex2 = Math.floor(Math.random() * availablePlanets.length);
-            
-            while (randomIndex2 === randomIndex1) {
-                randomIndex2 = Math.floor(Math.random() * availablePlanets.length);
+        // if (availablePlanets.length >= 2) {
+        //     const randomPlanets = [];
+
+        //     while (randomPlanets.length <= 2) {
+        //         const randomIndex = Math.floor(Math.random() * availablePlanets.length);
+        //         const planet = availablePlanets[randomIndex];
+
+        //         if (!randomPlanets.includes(planet)) {
+        //             randomPlanets.push(planet);
+        //         }
+        //     }
+
+        //     console.log('randomPlanets:', randomPlanets);
+
+        //     for (let i = 0; i < randomPlanets.length - 1; i++) {
+        //         tradeBetweenPlanets(updatedPlanet, randomPlanets[i]);
+        //         tradeBetweenPlanets(randomPlanets[i], updatedPlanet);
+        //     }
+        // }
+
+        async function populatePlanet() {
+            updatePlanets();
+            if (availablePlanets.length >= 2) {
+                const randomPlanets = [];
+
+                while (randomPlanets.length < 5) {
+                    const randomIndex = Math.floor(Math.random() * availablePlanets.length);
+                    const planet = availablePlanets[randomIndex];
+
+                    if (planet !== updatedPlanet && !randomPlanets.includes(planet)) {
+                        randomPlanets.push(planet);
+                    }
+                }
+
+                console.log('randomPlanets:', randomPlanets);
+
+                for (let i = 0; i < randomPlanets.length; i++) {
+                    tradeBetweenPlanets(updatedPlanet, randomPlanets[i]);
+                    tradeBetweenPlanets(randomPlanets[i], updatedPlanet);
+                }
             }
-            
-            const planet1 = availablePlanets[randomIndex1];
-            const planet2 = availablePlanets[randomIndex2];
-
-            console.log('planet1:', planet1);
-            console.log('planet2:', planet2);
-
-            tradeBetweenPlanets(planet1, planet2);
-            tradeBetweenPlanets(planet2, planet1);
         }
 
-    });
+        populatePlanet();
+
+    }, [updatedPlanet, trade]);
 
     return (
-        <div className='jumbotron'>
-            <h2>About Star Wars Market</h2>
-            <p>Welcome to the Star Wars Market app! This app is designed for fans of the Fantasy Flight Games Star Wars System, but can be adapted to any other Star Wars universe of your choice.</p>
-            <p>With this app, you can explore and trade various commodities from the Star Wars universe. Whether you're a Jedi, Sith, or just a fan of the franchise, you'll find a wide range of items to buy and sell.</p>
-            <p>Immerse yourself in the galactic economy and experience the thrill of interplanetary trade. Discover rare artifacts, exotic weapons, and valuable resources as you navigate through different planets.</p>
-            <p>Use your negotiation skills to strike profitable deals and expand your wealth. Buy low and sell high to maximize your profits, or invest in long-term ventures to secure a steady income.</p>
-            <p>But be careful, as the market is influenced by various factors such as supply and demand, economic conditions, and even political events. Stay updated with the latest market trends and adapt your trading strategies accordingly.</p>
-            <p>Whether you're a seasoned trader or just starting out, the Star Wars Market app provides a dynamic and immersive trading experience that will keep you engaged for hours.</p>
-            <p>May the Force be with you as you embark on your trading journey in the Star Wars universe!</p>
-            {/* <div>
-                <button className='btn btn-primary' onClick={ () => setTrade(!trade) }>Trade Between Planets</button>
-            </div> */}
+        <div>
+            <button onClick={() => setTrade(!trade)}>Trade</button>
         </div>
     );
 };
 
-export default About;
+export default NewPlanetPopulate;

@@ -2,6 +2,9 @@ import { database } from '../FirebaseConfig';
 import { doc, getDoc, collection, getDocs } from "firebase/firestore";
 import React, { useEffect, useState } from 'react';
 import { Form, Tabs, Tab } from 'react-bootstrap';
+import Container from 'react-bootstrap/Container';
+import Row from 'react-bootstrap/Row';
+import Col from 'react-bootstrap/Col';
 
 import '../styles/commodityTable.css';
 
@@ -60,32 +63,45 @@ const Commodities = ({ availablePlanets, setAvailablePlanets }) => {
 
   return (
     <div className='table-page'>
-      <h1>Table</h1>
-      <div className='planet-selector'>
-        <Form.Select onChange={(event) => setCurrentPlanet(event.target.value)}>
-          <option value=''>Select a planet</option>
-          {availablePlanets.map((planet) => (
-            <option key={planet} value={planet}>{unCamelCase(planet)}</option>
-          ))}
-        </Form.Select>
-        <br></br>
-      </div>
-      {currentPlanet !== '' && (
-        <>
-          <h3>{currentPlanet}</h3>
-          <p>Current Exports: {currentExports.length > 0 ? currentExports.filter(Boolean).map((exportItem) => unCamelCase(exportItem)).join(', ') : "None"}</p>
-          <p>Current Imports: {currentImports.length > 0 ? currentImports.filter(Boolean).map((importItem) => unCamelCase(importItem)).join(', ') : "None"}</p>
-          <div className='planets-table-div'>
-            <Tabs defaultActiveKey="0" id="commodity-tabs">
-              {planetCommodities.map((commodity, index) => (
-                <Tab eventKey={index.toString()} title={unCamelCase(Object.keys(commodity)[0])} key={index}>
-                  <CommodityTable commodity={commodity} unCamelCase={unCamelCase} planetCommodities={planetCommodities} currentExports={currentExports} currentImports={currentImports} setPlanetCommodities={setPlanetCommodities} currentPlanet={currentPlanet} otherPlanets={otherPlanets} />
-                </Tab>
-              ))}
-            </Tabs>
+      <Container>
+        <Row>
+          <Col>
+          <div className='jumbotron'>
+            <h1>Commodities</h1>
+            <div className='planet-selector'>
+              <Form.Select onChange={(event) => setCurrentPlanet(event.target.value)}>
+                <option value=''>Select a planet</option>
+                {availablePlanets.map((planet) => (
+                  <option key={planet} value={planet}>{unCamelCase(planet)}</option>
+                ))}
+              </Form.Select>
+              <br></br>
+            </div>
           </div>
-        </>
-      )}
+          </Col>
+          {currentPlanet !== '' && (
+            <>
+            <Col>
+              <div className='jumbotron'>
+                <h3><b>{currentPlanet}</b></h3>
+                <p><b>Current Exports:</b> {currentExports.length > 0 ? currentExports.filter(Boolean).map((exportItem) => unCamelCase(exportItem)).join(', ') : "None"}</p>
+                <p><b>Current Imports:</b> {currentImports.length > 0 ? currentImports.filter(Boolean).map((importItem) => unCamelCase(importItem)).join(', ') : "None"}</p>
+              </div>
+            </Col>
+            </>
+
+          )}
+        </Row>
+        <div className='planets-table-div'>
+          <Tabs defaultActiveKey="0" id="commodity-tabs" className="small-tabs">
+            {planetCommodities.map((commodity, index) => (
+              <Tab eventKey={index.toString()} title={unCamelCase(Object.keys(commodity)[0])} key={index}>
+                <CommodityTable commodity={commodity} unCamelCase={unCamelCase} planetCommodities={planetCommodities} currentExports={currentExports} currentImports={currentImports} setPlanetCommodities={setPlanetCommodities} currentPlanet={currentPlanet} otherPlanets={otherPlanets} />
+              </Tab>
+            ))}
+          </Tabs>
+        </div>
+      </Container>
     </div>
   );
 };

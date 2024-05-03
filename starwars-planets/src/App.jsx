@@ -22,7 +22,7 @@ function App() {
           <NavigationTabs tabUpdate={tabUpdate} setTabUpdate={setTabUpdate} />
         </header>
         <div className='main-jumbotron'>
-          <div>
+          <div className='page-title-header'>
             <h1>Welcome to Star Wars Planets</h1>
             <p>Choose a tab to view commodities or add a new planet</p>
             <br></br>
