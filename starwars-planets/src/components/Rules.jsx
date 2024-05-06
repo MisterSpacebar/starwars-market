@@ -8,9 +8,9 @@ function Rules() {
   return (
     <div className='jumbotron-rules'>
       <h1>New Rules</h1>
-      <p>
-        This app is designed for the Fantasy Flight Games (now Edge Studios) Star Wars Roleplaying Game system. It allows players to engage in interplanetary and interstellar trade. The new rules introduce the concept of trading commodities using Standard Transport Containers (STCs). Players are required to outfit their ships with cargo racks or containers to transport these commodities.
-      </p>
+      <p>This app is designed for the Fantasy Flight Games (now Edge Studios) Star Wars Roleplaying Game system.</p>
+      <p>It allows players to engage in interplanetary and interstellar trade. The new rules introduce the concept of trading commodities using Standard Transport Containers (STCs).</p>
+      <p>Players are required to outfit their ships with cargo racks or containers to transport these commodities.</p>
       <Table striped bordered className='encum-cargo-table'>
         <thead>
           <tr>
@@ -25,11 +25,11 @@ function Rules() {
           </tr>
           <tr>
             <td>400 encum</td>
-            <td>275 STC</td>
+            <td>265 STC</td>
           </tr>
           <tr>
             <td>4000 encum</td>
-            <td>3000 STC</td>
+            <td>2750 STC</td>
           </tr>
         </tbody>
       </Table>

@@ -251,7 +251,7 @@ const NewPlanetPopulate = ({ updatedPlanet }) => {
 
     return (
         <div>
-            <button onClick={() => setTrade(!trade)}>Trade</button>
+            {/* <button onClick={() => setTrade(!trade)}>Trade</button> */}
         </div>
     );
 };

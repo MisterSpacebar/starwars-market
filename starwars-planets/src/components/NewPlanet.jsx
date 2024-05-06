@@ -111,13 +111,7 @@ function NewPlanet() {
         updatedPlanet={updatedPlanet}
         />
         <div>
-            <h3>Planet Commodity</h3>
-            {/* <ul>
-                {planetCommodity.map((commodity, index) => (
-                    <li key={index}>{JSON.stringify(commodity)  }</li>
-                ))}
-            </ul> */}
-            { test ? <> <p>${planetName} has been added</p><br></br>
+            { test ? <> <h2>${planetName} has been added</h2><br></br>
                         <p>Imports: ${imports}</p><br></br>
                         <p>Exports: ${exports}</p><br></br></>
                          : <p></p>}
