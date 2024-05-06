@@ -1,0 +1,3 @@
+# Star Wars-Themed Commodities Market
+
+A simple web app I made to simulate a commodities market in the fashion of space sim games such as Elite, but with Star Wars planets. The idea is to introduce a market in the Star Wars TTRPGs for my players to interact with, so those large transport vessels become a reasonable choice for the party throughout a campaign instead of always going for efficient combat or multipurpose ships, and also to incentivize upgrading from the default Firespray or YT-1300 suggested by the Edge of the Empire core rulebook (and also makes the Wayfarer-Class Medium Transport ship a likely option for groups playing EotE). 
