@@ -7,6 +7,8 @@ import NewPlanetForm from './NewPlanetForm';
 import { database } from '../FirebaseConfig'
 import { setDoc, doc } from 'firebase/firestore';
 
+import '../styles/newPlanet.css';
+
 function generatePercentageLower() {
     return Math.random() * 0.900 + 0.850;
 }
@@ -100,7 +102,8 @@ function NewPlanet() {
 
   return (
     <div className="jumbotron jumbotron-fluid main-jumbo">
-        <NewPlanetForm 
+        <h1>Add a New Planet</h1>
+        <NewPlanetForm className="new-planet-component-form"
         planetName={planetName} 
         setPlanetName={setPlanetName} 
         imports={imports} 

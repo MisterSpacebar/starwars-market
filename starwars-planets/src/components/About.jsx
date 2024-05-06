@@ -38,7 +38,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
             const industriesArr = [];
             const selectedIndustries = new Set();
 
-            while (selectedIndustries.size < 6) {
+            while (selectedIndustries.size < 5) {
                 const randomIndex = Math.floor(Math.random() * industries.length);
                 selectedIndustries.add(industries[randomIndex]);
             }
@@ -68,7 +68,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                         
                         for (let item = 0; item < commodity[industry].length; item++) {
                             // if the supply of the commodity on planet one is greater than the demand on planet two
-                            if (commodity[industry][item].supply > planet_two.commodities[i][industry][item].demand) {
+                            if (commodity[industry][item].supply >= planet_two.commodities[i][industry][item].demand) {
                                 console.log('commodity[industry][item]:', commodity[industry][item].name);
                                 console.log('mirror name: ',planet_two.commodities[i][industry][item].name)
                                 commodity_names.push(commodity[industry][item].name);
@@ -160,9 +160,20 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
 
                                 console.log('updated planet two pricing and supply/demand:', planet_two.commodities[i][industry][item]);
 
+                            } else {
+                                //change/update other commodities in the category so it's not as stagnant
+                                console.log('non-traded item:', commodity[industry][item]);
+                                let newSupply = parseInt(commodity[industry][item].supply * generateRandomRatio());
+                                let newDemand = parseInt(commodity[industry][item].demand * generateRandomRatio());
+                                let newRatio = 1.000 * (newSupply + newDemand) / (commodity[industry][item].supply + commodity[industry][item].demand);
+                                commodity[industry][item].buy_price = parseInt(commodity[industry][item].buy_price * newRatio);
+                                commodity[industry][item].sell_price = parseInt(commodity[industry][item].sell_price * newRatio);
+                                commodity[industry][item].supply = newSupply
+                                commodity[industry][item].demand = newDemand;
+                                console.log('updated planet one pricing and supply/demand:', commodity[industry][item]);
                             }
                         } // end of item for loop
-                    }
+                    } // end of if statement (commodities)
                 } // end of child for loop (commodities)
             } // end of parent for loop (category)
 

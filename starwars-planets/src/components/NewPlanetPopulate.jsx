@@ -24,7 +24,7 @@ const generateRandomNumber = (upTo) => {
 }
 
 function generateRandomRatio() {
-    return Math.random() * 0.19 + 0.905;
+    return Math.random() * 0.098 + 0.951;
 }
 
 const NewPlanetPopulate = ({ updatedPlanet }) => {
@@ -39,7 +39,7 @@ const NewPlanetPopulate = ({ updatedPlanet }) => {
             const industriesArr = [];
             const selectedIndustries = new Set();
 
-            while (selectedIndustries.size < 6) {
+            while (selectedIndustries.size < 8) {
                 const randomIndex = Math.floor(Math.random() * industries.length);
                 selectedIndustries.add(industries[randomIndex]);
             }
@@ -69,7 +69,7 @@ const NewPlanetPopulate = ({ updatedPlanet }) => {
                         
                         for (let item = 0; item < commodity[industry].length; item++) {
                             // if the supply of the commodity on planet one is greater than the demand on planet two
-                            if (commodity[industry][item].supply > planet_two.commodities[i][industry][item].demand) {
+                            if (commodity[industry][item].supply >= planet_two.commodities[i][industry][item].demand) {
                                 console.log('commodity[industry][item]:', commodity[industry][item].name);
                                 console.log('mirror name: ',planet_two.commodities[i][industry][item].name)
                                 commodity_names.push(commodity[industry][item].name);
@@ -161,6 +161,17 @@ const NewPlanetPopulate = ({ updatedPlanet }) => {
 
                                 console.log('updated planet two pricing and supply/demand:', planet_two.commodities[i][industry][item]);
 
+                            } else {
+                                // update planet two 
+                                let newSupply = parseInt(planet_two.commodities[i][industry][item].supply * generateRandomRatio());
+                                let newDemand = parseInt(planet_two.commodities[i][industry][item].demand * generateRandomRatio());
+                                let newRatio = 1.000 * (newSupply + newDemand) / (planet_two.commodities[i][industry][item].supply + planet_two.commodities[i][industry][item].demand);
+                                let newBuyPrice = parseInt(planet_two.commodities[i][industry][item].buy_price * newRatio);
+                                let newSellPrice = parseInt(planet_two.commodities[i][industry][item].sell_price * newRatio);
+                                planet_two.commodities[i][industry][item].supply = newSupply;
+                                planet_two.commodities[i][industry][item].demand = newDemand;
+                                planet_two.commodities[i][industry][item].buy_price = newBuyPrice;
+                                planet_two.commodities[i][industry][item].sell_price = newSellPrice;
                             }
                         } // end of item for loop
                     }
