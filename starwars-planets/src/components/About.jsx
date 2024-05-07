@@ -238,12 +238,10 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
         <div className='jumbotron'>
             <h2>About Star Wars Market</h2>
             <p>Welcome to the Star Wars Market app! This app is designed for fans of the Fantasy Flight Games Star Wars System, but can be adapted to any other Star Wars universe of your choice.</p>
-            <p>With this app, you can explore and trade various commodities from the Star Wars universe. Whether you're a Jedi, Sith, or just a fan of the franchise, you'll find a wide range of items to buy and sell.</p>
-            <p>Immerse yourself in the galactic economy and experience the thrill of interplanetary trade. Discover rare artifacts, exotic weapons, and valuable resources as you navigate through different planets.</p>
-            <p>Use your negotiation skills to strike profitable deals and expand your wealth. Buy low and sell high to maximize your profits, or invest in long-term ventures to secure a steady income.</p>
-            <p>But be careful, as the market is influenced by various factors such as supply and demand, economic conditions, and even political events. Stay updated with the latest market trends and adapt your trading strategies accordingly.</p>
-            <p>Whether you're a seasoned trader or just starting out, the Star Wars Market app provides a dynamic and immersive trading experience that will keep you engaged for hours.</p>
-            <p>May the Force be with you as you embark on your trading journey in the Star Wars universe!</p>
+            <p>A simple web app I made to simulate a commodities market in the fashion of space sim games such as Elite, but with Star Wars planets.</p>
+            <p>It allows players to engage in interplanetary and interstellar trade. The new rules introduce the concept of trading commodities using Standard Transport Containers (STCs).</p>
+            <p>The idea is to introduce a market in the Star Wars TTRPGs for my players to interact with, so those large transport vessels become a reasonable choice for the party throughout a campaign instead of always going for efficient combat or multipurpose ships, and also to incentivize upgrading from the default Firespray or YT-1300 suggested by the Edge of the Empire core rulebook (and also makes the Wayfarer-Class Medium Transport ship a likely option for groups playing EotE).</p>
+            <p>This app refreshes trade data constantly while the user is on this page. This uses data, so please leave this page whenever you're done reading to save costs.</p>
             {/* <div>
                 <button className='btn btn-primary' onClick={ () => setTrade(!trade) }>Trade Between Planets</button>
             </div> */}
