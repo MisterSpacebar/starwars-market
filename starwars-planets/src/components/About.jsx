@@ -27,6 +27,10 @@ function generateRandomRatio() {
     return Math.random() * 0.19 + 0.905;
 }
 
+function generateGreaterRandomRatio() {
+    return Math.random() * (1.35 - 0.65) + 0.65;
+}
+
 const About = ({ availablePlanets, setAvailablePlanets }) => {
 
     const [trade, setTrade] = useState(false);
@@ -176,6 +180,29 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                     } // end of if statement (commodities)
                 } // end of child for loop (commodities)
             } // end of parent for loop (category)
+
+
+            // sometimes the minerals get all out of whack, so we may need to reset them
+            let averageMinerals = industries.minerals
+            for(let i = 0; i < averageMinerals.length; i++) {
+                if(planet_one.commodities[8].minerals[i].supply < 10 || planet_two.commodities[8].minerals[i].supply < 10 ||
+                planet_one.commodities[8].minerals[i].demand < 10 || planet_two.commodities[8].minerals[i].demand < 10 ||
+                planet_one.commodities[8].minerals[i].buy_price < 10 || planet_two.commodities[8].minerals[i].buy_price < 10 ||
+                planet_one.commodities[8].minerals[i].buy_price > 5000000 || planet_two.commodities[8].minerals[i].buy_price > 5000000 ||
+                planet_one.commodities[8].minerals[i].sell_price > 5000000 || planet_two.commodities[8].minerals[i].sell_price > 5000000 ||
+                planet_one.commodities[8].minerals[i].sell_price < 10 || planet_two.commodities[8].minerals[i].sell_price < 10) {
+                    // reset the minerals
+                    planet_one.commodities[8].minerals[i].supply = parseInt(averageMinerals[i].supply * generateGreaterRandomRatio());
+                    planet_two.commodities[8].minerals[i].supply = parseInt(averageMinerals[i].supply * generateGreaterRandomRatio());
+                    planet_one.commodities[8].minerals[i].demand = parseInt(averageMinerals[i].demand * generateGreaterRandomRatio());
+                    planet_two.commodities[8].minerals[i].demand = parseInt(averageMinerals[i].demand * generateGreaterRandomRatio());
+                    planet_one.commodities[8].minerals[i].buy_price = parseInt(averageMinerals[i].buy_price * generateGreaterRandomRatio());
+                    planet_two.commodities[8].minerals[i].buy_price = parseInt(averageMinerals[i].buy_price * generateGreaterRandomRatio());
+                    planet_one.commodities[8].minerals[i].sell_price = parseInt(averageMinerals[i].sell_price * generateGreaterRandomRatio());
+                    planet_two.commodities[8].minerals[i].sell_price = parseInt(averageMinerals[i].sell_price * generateGreaterRandomRatio());
+                }
+            }
+
 
             console.log('(updated)planet_one:', planet_one);
             console.log('(updated)planet_two:', planet_two);
