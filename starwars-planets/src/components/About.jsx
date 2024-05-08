@@ -209,6 +209,13 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                     console.log('(updated minerals)updated planet_one.commodities[8].minerals[i]:', planet_one.commodities[8].minerals[i]);
                     console.log('(updated minerals)updated planet_two.commodities[8].minerals[i]:', planet_two.commodities[8].minerals[i]);
                 }
+                if (planet_one.commodities[8].minerals[i].buy_price > 1000000 || planet_two.commodities[8].minerals[i].buy_price > 1000000 ||
+                planet_one.commodities[8].minerals[i].sell_price > 1000000 || planet_two.commodities[8].minerals[i].sell_price > 1000000 ){
+                    planet_one.commodities[8].minerals[i].buy_price = parseInt(planet_one.commodities[8].minerals[i].buy_price / 2.5 * generateGreaterRandomRatio());
+                    planet_two.commodities[8].minerals[i].buy_price = parseInt(planet_two.commodities[8].minerals[i].buy_price / 2.5 * generateGreaterRandomRatio());
+                    planet_one.commodities[8].minerals[i].sell_price = parseInt(planet_one.commodities[8].minerals[i].sell_price / 2.5 * generateGreaterRandomRatio());
+                    planet_two.commodities[8].minerals[i].sell_price = parseInt(planet_two.commodities[8].minerals[i].sell_price / 2.5 * generateGreaterRandomRatio());
+                }
             }
 
 
