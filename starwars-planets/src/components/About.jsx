@@ -99,7 +99,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                                 console.log('updated planet two commodity data ', planet_two.commodities[i][industry][item]);
 
                                 // adjust planet one prices
-                                let planet_one_ratio = generateRandomRatio() * Math.pow(( 1.000 * commodity[industry][item].supply / (commodity[industry][item].supply - tradeAmount)),3);
+                                let planet_one_ratio = generateRandomRatio() * Math.pow(( 1.000 * commodity[industry][item].supply / (commodity[industry][item].supply - tradeAmount)),2);
 
                                 if (planet_one_ratio < 0) {
                                   planet_one_ratio = planet_one_ratio * -1;
@@ -134,7 +134,7 @@ const About = ({ availablePlanets, setAvailablePlanets }) => {
                                 console.log('updated planet one pricing and supply/demand:', commodity[industry][item]);
 
                                 // adjust planet two prices
-                                let planet_two_ratio = generateRandomRatio() * Math.pow((1.000 * (planet_two.commodities[i][industry][item].supply - tradeAmount) / planet_two.commodities[i][industry][item].supply),3);
+                                let planet_two_ratio = generateRandomRatio() * Math.pow((1.000 * (planet_two.commodities[i][industry][item].supply - tradeAmount) / planet_two.commodities[i][industry][item].supply),2);
 
                                 if (planet_two_ratio < 0) {
                                   planet_two_ratio = planet_two_ratio * -1;
